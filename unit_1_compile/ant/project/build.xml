@@ -5,7 +5,7 @@
     </path>
 
     <target name="clean">
-        <delete dir="build"/>
+        <delete dir="build" test=""/>
     </target>
 
     <target name="compile">

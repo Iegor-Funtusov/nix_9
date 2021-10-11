@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-2 mt-2">
+      <div class="card-header">
+        All Users
+      </div>
+      <div class="card-body">
+        <table class="table table-sm table-hover">
+          <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>age</th>
+            <th>details</th>
+            <th>delete</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.age }}</td>
+            <td></td>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card mt-2">
+      <div class="card-header">
+        <a type="button" class="btn btn-primary" th:href="@{/users/new}">Add</a>
+      </div>
+    </div>
+  </div>
+</div>
