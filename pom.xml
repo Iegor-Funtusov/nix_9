@@ -13,6 +13,7 @@
         <module>hw_1_base_operations</module>
         <module>unit_2_base_operations</module>
         <module>console_helper</module>
+        <module>unit_3_strings</module>
     </modules>
 
     <properties>
