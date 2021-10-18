@@ -13,30 +13,30 @@ public class StringMain {
 
     public static void main(String[] args) {
 
-        String s = "test";
-
-        s = StringHelperUtil.reverse(s, true);
-
-        System.out.println("s = " + s);
-
-        System.out.println((int) 'u');
-        System.out.println(s.contains("u"));
-        System.out.println(s.indexOf(117));
-        System.out.println(s.indexOf("u", 3));
-
-        System.out.println(s.substring(1, 3));
-
-        String ss = new String("test");
-        ss = "test";
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("SELECT FROM ");
-        stringBuilder.append(User.class.getSimpleName());
-        stringBuilder.append(" where ");
-
-        String q = "SELECT FROM ";
-        q += User.class.getSimpleName();
-        q += " where ";
+//        String s = "test";
+//
+//        s = StringHelperUtil.reverse(s, true);
+//
+//        System.out.println("s = " + s);
+//
+//        System.out.println((int) 'u');
+//        System.out.println(s.contains("u"));
+//        System.out.println(s.indexOf(117));
+//        System.out.println(s.indexOf("u", 3));
+//
+//        System.out.println(s.substring(1, 3));
+//
+//        String ss = new String("test");
+//        ss = "test";
+//
+//        StringBuilder stringBuilder = new StringBuilder();
+//        stringBuilder.append("SELECT FROM ");
+//        stringBuilder.append(User.class.getSimpleName());
+//        stringBuilder.append(" where ");
+//
+//        String q = "SELECT FROM ";
+//        q += User.class.getSimpleName();
+//        q += " where ";
 
 
 

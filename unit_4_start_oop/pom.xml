@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>string_helper</artifactId>
+    <artifactId>unit_4_start_oop</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
