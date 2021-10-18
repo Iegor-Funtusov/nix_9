@@ -14,6 +14,11 @@ public class StringMain {
     public static void main(String[] args) {
 
         String s = "test";
+
+        s = StringHelperUtil.reverse(s, true);
+
+        System.out.println("s = " + s);
+
         System.out.println((int) 'u');
         System.out.println(s.contains("u"));
         System.out.println(s.indexOf(117));
