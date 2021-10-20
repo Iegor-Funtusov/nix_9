@@ -16,6 +16,7 @@
         <module>unit_3_strings</module>
         <module>string_helper</module>
         <module>unit_4_start_oop</module>
+        <module>unit_5_next_oop</module>
     </modules>
 
     <properties>
