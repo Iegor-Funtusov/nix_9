@@ -313,7 +313,7 @@
 
         /* 
          * Shows only the first data row.
-         * Used in body:onload so the user could directly see some messages.
+         * Used in body:onload so the userRecord could directly see some messages.
          */
         function openFirst() {
           hideAll();

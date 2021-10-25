@@ -70,10 +70,10 @@
     </mailingList>
     <mailingList>
       <name>Ant Users List</name>
-      <subscribe>user-subscribe@ant.apache.org</subscribe>
-      <unsubscribe>user-unsubscribe@ant.apache.org</unsubscribe>
-      <post>user@ant.apache.org</post>
-      <archive>https://mail-archives.apache.org/mod_mbox/ant-user</archive>
+      <subscribe>userRecord-subscribe@ant.apache.org</subscribe>
+      <unsubscribe>userRecord-unsubscribe@ant.apache.org</unsubscribe>
+      <post>userRecord@ant.apache.org</post>
+      <archive>https://mail-archives.apache.org/mod_mbox/ant-userRecord</archive>
     </mailingList>
   </mailingLists>
   <issueManagement>

@@ -35,7 +35,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/m
   <version>1.10.9</version>
   <name>Apache Ant + JavaMail</name>
   <description>implementation of the mail task based on javamail.
-    Required to send emails to SMTP servers using user/password combinations
+    Required to send emails to SMTP servers using userRecord/password combinations
   or to send mail over SSL</description>
   <dependencies>
     <dependency>

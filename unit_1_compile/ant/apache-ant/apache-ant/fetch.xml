@@ -28,7 +28,7 @@ This build file downloads JAR files that optional Ant tasks use,
 and installs them in a location that is accessible the next time Ant runs.
 
 You can choose three locations, by going -Ddest=LOCATION on the command line
--Ddest=user     user lib dir  ${user.home}/.ant/lib
+-Ddest=userRecord     userRecord lib dir  ${userRecord.home}/.ant/lib
 -Ddest=system   ant lib dir   ${ant.home}/lib
 -Ddest=optional optional dir  $${basedir}/lib/optional  (for Ant developers)
 
@@ -50,18 +50,18 @@ and open a new console. or, by hand
  set ANT_OPTS = -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080
   </description>
 
-  <!-- Give user a chance to override without editing this file
+  <!-- Give userRecord a chance to override without editing this file
        (and without typing -D each time it compiles it) -->
-  <property file="${user.home}/.ant/ant.properties"/>
+  <property file="${userRecord.home}/.ant/ant.properties"/>
   <property name="lib.dir" location="lib"/>
   <property name="optional.dir" location="${lib.dir}/optional"/>
-  <property name="userlib.dir" location="${user.home}/.ant/lib"/>
+  <property name="userlib.dir" location="${userRecord.home}/.ant/lib"/>
 
   <!-- Load in our properties table -->
   <property file="/ant/apache-ant/lib/libraries.properties"/>
 
   <!-- Temporary cache for working files -->
-  <property name="temp.dir" location="${user.home}/.ant/tempcache"/>
+  <property name="temp.dir" location="${userRecord.home}/.ant/tempcache"/>
   <property name="keep.temp.dir" value="true"/>
 
   <import file="get-m2.xml"/>
@@ -74,7 +74,7 @@ and open a new console. or, by hand
         </not>
       </condition>ERROR
 Set -Ddest=LOCATION on the command line
-  -Ddest=user     user lib dir  ${user.home}/.ant/lib
+  -Ddest=userRecord     userRecord lib dir  ${userRecord.home}/.ant/lib
   -Ddest=system   ant lib dir   ${ant.home}/lib
   -Ddest=optional optional dir  $${basedir}/lib/optional  (for Ant developers)
     </fail>
@@ -89,7 +89,7 @@ Set -Ddest=LOCATION on the command line
     </condition>
     <condition property="dest.dir"
                value="${userlib.dir}">
-      <equals arg1="${dest}" arg2="user"/>
+      <equals arg1="${dest}" arg2="userRecord"/>
     </condition>
     <fail unless="dest.dir">Unknown destination : ${dest}</fail>
     <echo>Downloading to ${dest.dir}</echo>
@@ -145,10 +145,10 @@ Set -Ddest=LOCATION on the command line
       <attribute name="remotedir"/>
       <attribute name="filename"/>
       <attribute name="localdir" default="${dest.dir}"/>
-      <attribute name="user" default="anonymous"/>
+      <attribute name="userRecord" default="anonymous"/>
       <attribute name="pw" default="anonymous"/>
       <sequential>
-        <ftp server="@{host}" port="@{port}" userid="@{user}" password="@{pw}" passive="true"
+        <ftp server="@{host}" port="@{port}" userid="@{userRecord}" password="@{pw}" passive="true"
              remotedir="@{remotedir}" action="get" depends="true" preserveLastModified="true"
              skipFailedTransfers="true">
           <fileset dir="@{localdir}">
@@ -167,7 +167,7 @@ Set -Ddest=LOCATION on the command line
 
   <target name="init-cache">
     <available property="temp.cache.already.exists" file="${temp.dir}" type="dir"/>
-    <condition property="user.wants.temp.cache">
+    <condition property="userRecord.wants.temp.cache">
       <and>
         <isset property="keep.temp.dir"/>
         <not>
@@ -185,7 +185,7 @@ Set -Ddest=LOCATION on the command line
           <isset property="temp.cache.already.exists"/>
         </not>
         <not>
-          <isset property="user.wants.temp.cache"/>
+          <isset property="userRecord.wants.temp.cache"/>
         </not>
       </and>
     </condition>

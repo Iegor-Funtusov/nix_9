@@ -29,15 +29,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="user : ${users}">
-                            <td th:text="${user.getId()}"></td>
-                            <td th:text="${user.getName()}"></td>
-                            <td th:text="${user.getAge()}"></td>
+                        <tr th:each="userRecord : ${users}">
+                            <td th:text="${userRecord.getId()}"></td>
+                            <td th:text="${userRecord.getName()}"></td>
+                            <td th:text="${userRecord.getAge()}"></td>
                             <td>
-                                <a th:href="@{'/users/' + ${user.getId()}}" type="button" class="btn btn-primary">details</a>
+                                <a th:href="@{'/users/' + ${userRecord.getId()}}" type="button" class="btn btn-primary">details</a>
                             </td>
                             <td>
-                                <a th:href="@{'/users/delete/' + ${user.getId()}}" type="button" class="btn btn-danger">delete</a>
+                                <a th:href="@{'/users/delete/' + ${userRecord.getId()}}" type="button" class="btn btn-danger">delete</a>
                             </td>
                         </tr>
                         </tbody>

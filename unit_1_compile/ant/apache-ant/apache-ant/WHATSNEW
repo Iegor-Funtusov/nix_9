@@ -69,7 +69,7 @@ Fixed bugs:
    Bugzilla Report 63874
 
  * sshexec, sshsession and scp now support a new sshConfig parameter.
-   It specified the SSH configuration file (typically ${user.home}/.ssh/config)
+   It specified the SSH configuration file (typically ${userRecord.home}/.ssh/config)
    defining the username and keyfile to be used per host.
 
  * "legacy-xml" formatter of junitlauncher task wasn't writing out
@@ -363,7 +363,7 @@ Other changes:
    of the Java Runtime class.
 
  * linecontains filter now has a new "matchAny" attribute which when
-   set to "true" allows any (instead of all) of the user-specified
+   set to "true" allows any (instead of all) of the userRecord-specified
    strings to be present in the line.
    Bugzilla Report 62313
 
@@ -957,7 +957,7 @@ Other changes:
    <ftp> and <get>.
    github pull requests #8 and #9
 
- * The tar package can now deal with group and user ids bigger than
+ * The tar package can now deal with group and userRecord ids bigger than
    0x80000000.
    https://issues.apache.org/jira/browse/COMPRESS-314
    https://issues.apache.org/jira/browse/COMPRESS-315
@@ -3326,7 +3326,7 @@ Other changes:
 * <junitreport> xsl stylesheets allow setting the title used in <title> and <h1> tags by
   using <report><param> element.  Bugzilla 41742.
 
-* Add IgnoreDependenciesExecutor for weird cases when the user wants to run
+* Add IgnoreDependenciesExecutor for weird cases when the userRecord wants to run
   only the targets explicitly specified.
 
 * Patternset allows nested inverted patternsets using <invert>.
@@ -3441,7 +3441,7 @@ Changes that could break older environments:
   Previously, this required tweaking with the timediffmillis attribute
   which also was used to handle timezone differences.  Now, there is a new
   timestampgranularity attribute.  The default value for get operations is 0
-  since the user has the more powerful preservelastmodified attribute to work
+  since the userRecord has the more powerful preservelastmodified attribute to work
   with.  Since this is not available on put operations the default value
   adds a minute to the server timestamp in order to account for this,
   Scripts which previously used timediffmillis to do this compensation may
@@ -3783,7 +3783,7 @@ Fixed bugs:
 Other changes:
 --------------
 
-* Warn user when a reference in the form "${refid}" cannot be resolved as this
+* Warn userRecord when a reference in the form "${refid}" cannot be resolved as this
   is a sign they probably meant "refid" (misuse of property expansion syntax).
 
 * Add dtd to javadoc for junit.
@@ -3963,7 +3963,7 @@ Other changes:
 
 * Added <scriptselector> selector for scripted file selection
 
-* ant -diagnostics lists contents of ${user.home}/.ant/lib , and
+* ant -diagnostics lists contents of ${userRecord.home}/.ant/lib , and
   checks that the java.io.tmpdir directory exists and is writeable.
 
 * mail task accepts nested header element.  Bugzilla report 24713.
@@ -4281,7 +4281,7 @@ Other changes:
 * Made the dest attribute of the apply task optional; mapped target
   filenames will be interpreted as absolute pathnames when dest is omitted.
 
-* Changed default tempdir for <javac> from user.dir to java.io.tmpdir.
+* Changed default tempdir for <javac> from userRecord.dir to java.io.tmpdir.
 
 * Added searchpath attribute to <exec> for searching path variable(s)
   when resolveexecutable = true.
@@ -4322,7 +4322,7 @@ Other changes:
   Bugzilla 33787.
 
 * Added -nouserlib option to allow running ant without automatically loading
-  up ${user.home}/.lib/ant. This is useful when compiling ant, and antlibs.
+  up ${userRecord.home}/.lib/ant. This is useful when compiling ant, and antlibs.
   Modified the build.sh and build.bat to use the option.
 
 * Added -noclasspath option to allow running ant WITHOUT using CLASSPATH env
@@ -4356,7 +4356,7 @@ Other changes:
   - beginner: introduction into Ant
   - task developers: using path, fileset etc
 
-* a number of new attributes that allow the user to handle non-standard
+* a number of new attributes that allow the userRecord to handle non-standard
   server listing formats and time zone differences have been added in
   the <ftp> task.
 
@@ -4444,7 +4444,7 @@ Fixed bugs:
 * <scp> using <fileset> didn't work with OpenSSH 3.9 and later.
   Bugzilla report 31939
 
-* <setproxy> failed to set user/password on some JDKs.
+* <setproxy> failed to set userRecord/password on some JDKs.
   Bugzilla report 32667
 
 * untar would go into infinite loop for some invalid tar files.
@@ -4871,7 +4871,7 @@ Changes that could break older environments:
   of the older ORO Netcomponents version.  See
   <http://jakarta.apache.org/commons/net/index.html>.
 
-* <input> will no longer prompt the user and wait for input if the
+* <input> will no longer prompt the userRecord and wait for input if the
   addproperty attribute is set to a property that has already been
   defined in the project.  If you rely on the task waiting for input,
   don't use the addproperty attribute.
@@ -4883,7 +4883,7 @@ Changes that could break older environments:
 * New Launch mechanism implemented. This moves some functionality from
   the batch files / shell scripts into Java. This removes environment
   limitations, for command issues, directory depth issues on Windows. Also
-  allows a per-user library location to be used if the main Ant install
+  allows a per-userRecord library location to be used if the main Ant install
   is locked down.
 
 * The Entry nested element of PropertyFile will not any more have its value
@@ -4912,7 +4912,7 @@ Changes that could break older environments:
 * User defined tasks and typedefs are now handled internally in the
   same way as predefined tasks and typedefs. Also tasks and typedefs
   are resolved at a later stage. This causes some
-  differences especially for user defined task containers.
+  differences especially for userRecord defined task containers.
 
 * <checksum> log message "Calculating checksum ..." has been degraded
   from INFO to VERBOSE.
@@ -5020,7 +5020,7 @@ Fixed bugs:
   argument using <javadoc> and JDK 1.4.  Bugzilla Report 16871.
 
 * <junit> didn't work with custom formatters that were only available
-  on the user specified classpath when a timeout occurred.  Bugzilla
+  on the userRecord specified classpath when a timeout occurred.  Bugzilla
   Report 19953.
 
 * <different> selector : make ignoreFileTimes effectively default to true
@@ -5294,7 +5294,7 @@ Other changes:
 
 * <mail> has a new attribute charset. Bugzilla Report 15434.
 
-* <mail> has new attributes user and password for SMTP auth.
+* <mail> has new attributes userRecord and password for SMTP auth.
   maillogger can also use this.
   The implementation only works with JavaMail (encoding="MIME").
   Implementation with plain mail remains to do.
@@ -5481,7 +5481,7 @@ Other changes:
 
 * New filter <concatfilter>. Adds the content of file at the beginning
   or end of a file. Discussion started at
-  http://marc.theaimsgroup.com/?l=ant-user&m=106366791228585&w=2
+  http://marc.theaimsgroup.com/?l=ant-userRecord&m=106366791228585&w=2
 
 * New task <import>
 
@@ -5939,7 +5939,7 @@ Fixed bugs:
 
 * <available classname="foo" ignoresystemclasses="true"> failed for
   JDK 1.1 and 1.2, even if the class could be found on the
-  user-specified classpath.
+  userRecord-specified classpath.
 
 * <property environment=... /> now works on z/OS.
 
@@ -6072,7 +6072,7 @@ Changes that could break older environments:
   assertTrue method instead of assert.
 
 * If the 'output' attribute of <ant> is set to a simple filename or a
-  relative path, the file is created relative to ${basedir}, not ${user.dir}.
+  relative path, the file is created relative to ${basedir}, not ${userRecord.dir}.
 
 * The default value for build.compiler is now javac1.x with x
   depending on the JDK that is running Ant instead of classic/modern.
@@ -6315,7 +6315,7 @@ Other changes:
   if the fork attribute has been set to true.
 
 * -propertyfile command-line option has been added to load an entire
-  property file just as -D properties are declared (as user properties).
+  property file just as -D properties are declared (as userRecord properties).
   -D properties take precedence over -propertyfile specified ones.
 
 * You can now set an ANT_ARGS environment variable to hold arguments you
@@ -6688,7 +6688,7 @@ Other changes:
   byte - only if filtering is of, of course.
 
 * <ant> and <antcall> tasks now support a new attribute inheritAll. When set to
-  false, only user properties are passed through to the target Ant instance.
+  false, only userRecord properties are passed through to the target Ant instance.
   This includes properties set on the command line and properties explicitly
   passed
 
@@ -6734,7 +6734,7 @@ Fixed bugs:
 
 * Input ZIP-Files will be closed when using a <zipfileset>.
 
-* p4 tasks now don't fail if user, port or client have been omitted
+* p4 tasks now don't fail if userRecord, port or client have been omitted
   (and this is acceptable for the context of the command).
 
 * <javah>'s outputfile attribute will be resolved as relative to the

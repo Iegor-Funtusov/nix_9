@@ -17,6 +17,7 @@
         <module>string_helper</module>
         <module>unit_4_start_oop</module>
         <module>unit_5_next_oop</module>
+        <module>unit_6_tests_logs</module>
     </modules>
 
     <properties>
