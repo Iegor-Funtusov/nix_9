@@ -18,6 +18,8 @@
         <module>unit_4_start_oop</module>
         <module>unit_5_next_oop</module>
         <module>unit_6_tests_logs</module>
+        <module>unit_7_di_oop</module>
+        <module>dinix</module>
     </modules>
 
     <properties>
