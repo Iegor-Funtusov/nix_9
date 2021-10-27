@@ -1,27 +1,27 @@
 package ua.com.alevel.util;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.net.URL;
+import java.io.*;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Properties;
+
+import static ua.com.alevel.config.PropertiesConfig.APPLICATION_PROPERTIES;
 
 public final class ResourcesUtil {
 
     private ResourcesUtil() { }
 
-    public static Map<String, String> getResource(ClassLoader classLoader) {
-        URL systemResource = classLoader.getSystemResource("application.properties");
-        String path = systemResource.getPath();
-        try {
-            Stream<String> lines = new BufferedReader(new FileReader(path)).lines();
-            return lines
-                    .map(line -> line.split("="))
-                    .collect(Collectors.toMap(arg -> arg[0], arg -> arg[1]));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("file not found");
+    public static Map<String, String> getProperties(ClassLoader classLoader) {
+        try(InputStream inputStream = classLoader.getResourceAsStream(APPLICATION_PROPERTIES.getProperties())) {
+            Properties properties = new Properties();
+            properties.load(inputStream);
+            HashMap<String, String> propertiesMap = new HashMap<>();
+            for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+                propertiesMap.put(String.valueOf(entry.getKey()), String.valueOf(entry.getValue()));
+            }
+            return propertiesMap;
+        } catch (IOException e) {
+            throw new RuntimeException("file " + APPLICATION_PROPERTIES.getProperties() + " not found");
         }
     }
 }

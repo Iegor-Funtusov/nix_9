@@ -17,7 +17,7 @@ public class ApplicationConfig {
         Set<Class<? extends I>> imls = scan.getSubTypesOf(iface);
         for (Class<? extends I> iml : imls) {
             if (iface.isAssignableFrom(UserDB.class)) {
-                Map<String, String> map = ResourcesUtil.getResource(iface.getClassLoader());
+                Map<String, String> map = ResourcesUtil.getProperties(iface.getClassLoader());
                 String db = map.get(ApplicationType.DB_TYPE.getType());
                 if (db.equals(ApplicationType.DB_SET_VALUE.getType())) {
                     return (I) UserSetDBImpl.getInstance();
