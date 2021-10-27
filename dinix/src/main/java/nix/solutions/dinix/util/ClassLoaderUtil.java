@@ -12,8 +12,7 @@ public final class ClassLoaderUtil {
 
     private ClassLoaderUtil() { }
 
-    public static List<Class<?>> getClasses(String packageName) throws ClassNotFoundException, IOException {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+    public static List<Class<?>> getClasses(String packageName, ClassLoader classLoader) throws ClassNotFoundException, IOException {
         assert classLoader != null;
         String path = packageName.replace('.', '/');
         Enumeration<URL> resources = classLoader.getResources(path);

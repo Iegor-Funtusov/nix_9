@@ -24,13 +24,12 @@ public class ApplicationContext {
         try {
             Package mainPackage = mainClass.getPackage();
             String basePackage = mainPackage.getName();
-            ClassLoader mainClassLoader = mainClass.getClassLoader();
-            List<Class<?>> allClasses = ClassLoaderUtil.getClasses(basePackage);
+            this.mainClassLoader = mainClass.getClassLoader();
+            List<Class<?>> allClasses = ClassLoaderUtil.getClasses(basePackage, this.mainClassLoader);
             Set<Class<?>> interfaces = allClasses.stream().filter(Class::isInterface).collect(Collectors.toSet());
             this.interfaces = initOnlyInterfacesClasses(interfaces);
             this.applicationSearcher = new ApplicationSearcher(basePackage);
             this.scanner = new Reflections(this.getClass().getPackage().getName());
-            this.mainClassLoader = mainClassLoader;
         } catch (Exception e) {
             System.out.println("e = " + e.getMessage());
         }
