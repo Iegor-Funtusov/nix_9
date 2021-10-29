@@ -4,6 +4,7 @@ import nix.solutions.dinix.annotations.Autowired;
 import nix.solutions.dinix.annotations.Service;
 
 import ua.com.alevel.dao.CustomerDao;
+import ua.com.alevel.dao.OrderDao;
 import ua.com.alevel.entity.Customer;
 import ua.com.alevel.service.CustomerService;
 
@@ -15,9 +16,13 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerDao customerDao;
 
+    @Autowired
+    private OrderDao orderDao;
+
     @Override
     public void create(Customer entity) {
         customerDao.create(entity);
+        orderDao.create(null);
     }
 
     @Override

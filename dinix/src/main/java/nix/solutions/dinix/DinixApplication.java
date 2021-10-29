@@ -9,6 +9,7 @@ public class DinixApplication {
 
     public static void run(Class<?> mainClass) {
         ApplicationContext applicationContext = new ApplicationContext(mainClass);
+        PropertieStorage.getInstance().initProperties(applicationContext.getMainClassLoader());
         ObjectFactory objectFactory = new ObjectFactory(applicationContext);
         applicationContext.setObjectFactory(objectFactory);
         applicationContext.applicationInit();
