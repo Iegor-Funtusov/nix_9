@@ -18,16 +18,12 @@ public class CustomerFacadeImpl implements CustomerFacade {
     @Autowired
     private CustomerService customerService;
 
-    public CustomerFacadeImpl() {
-        System.out.println("CustomerFacadeImpl.CustomerFacadeImpl");
-    }
-
     @Override
     public void create(CustomerRequestDto requestDto) {
-        System.out.println("CustomerFacadeImpl.create");
         Customer customer = new Customer();
         customer.setFirstName(requestDto.getFirstName());
         customer.setLastName(requestDto.getLastName());
+        customer.setEmail(requestDto.getEmail());
         customerService.create(customer);
     }
 

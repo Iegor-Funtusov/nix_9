@@ -51,6 +51,10 @@ public class ApplicationContext {
         return mapInterfaceAndImplementation;
     }
 
+    public ClassLoader getMainClassLoader() {
+        return mainClassLoader;
+    }
+
     private void initMapInterfaceAndImplementation() {
         for (Class<?> serviceInterface : this.interfaces) {
             getObjectImpl(serviceInterface);

@@ -15,6 +15,7 @@ public class CustomerResponseDto extends BaseResponseDto {
         this.id = customer.getId();
         this.firstName = customer.getFirstName();
         this.lastName = customer.getLastName();
+        this.email = customer.getEmail();
     }
 
     public Integer getId() {

@@ -1,6 +1,8 @@
 package ua.com.alevel.dao.impl;
 
+import nix.solutions.dinix.annotations.InitMethod;
 import nix.solutions.dinix.annotations.Service;
+import nix.solutions.dinix.annotations.Value;
 
 import ua.com.alevel.dao.CustomerDao;
 import ua.com.alevel.entity.Customer;
@@ -16,16 +18,29 @@ public class CustomerDaoImpl implements CustomerDao {
     private Connection connection;
     private Statement statement;
 
+    @Value("db.driver")
+    private String driver;
+
+    @Value("db.url")
+    private String url;
+
+    @Value("db.user")
+    private String user;
+
+    @Value("db.password")
+    private String password;
+
     private static final String CREATE_USER = "insert into customers values(default,?,?,?,?,?)";
     private static final String UPDATE_BY_ID_QUERY = "update customers set name = ?, age = ? where id = ?";
     private static final String FIND_ALL_USER_QUERY = "select * from customers";
     private static final String FIND_USER_BY_ID_QUERY = "select * from customers where id = ";
     private static final String DELETE_USER_BY_ID_QUERY = "delete from customers where id = ";
 
-    public CustomerDaoImpl() {
+    @InitMethod
+    private void connect() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/nix_9_di?useSSL=false&serverTimezone=UTC", "root", "root");
+            Class.forName(driver);
+            this.connection = DriverManager.getConnection(url, user, password);
             this.statement = connection.createStatement();
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("problem: = " + e.getMessage());
@@ -34,8 +49,6 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public void create(Customer entity) {
-        System.out.println("CustomerDaoImpl.create");
-
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(CREATE_USER);
@@ -99,12 +112,14 @@ public class CustomerDaoImpl implements CustomerDao {
     private Customer initUserByResultSet(ResultSet resultSet) throws SQLException {
         String firstName = resultSet.getString("first_name");
         String lastName = resultSet.getString("last_name");
+        String email = resultSet.getString("email");
         int age = resultSet.getInt("age");
         int id = resultSet.getInt("id");
         Customer customer = new Customer();
         customer.setId(id);
         customer.setFirstName(firstName);
         customer.setLastName(lastName);
+        customer.setEmail(email);
         return customer;
     }
 }

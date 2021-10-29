@@ -15,13 +15,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerDao customerDao;
 
-    public CustomerServiceImpl() {
-        System.out.println("CustomerServiceImpl.CustomerServiceImpl");
-    }
-
     @Override
     public void create(Customer entity) {
-        System.out.println("CustomerServiceImpl.create");
         customerDao.create(entity);
     }
 

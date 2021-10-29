@@ -68,10 +68,13 @@ public class CustomerControllerImpl implements CustomerController {
             String firstName = reader.readLine();
             System.out.println("Please, enter your last name");
             String lastName = reader.readLine();
+            System.out.println("Please, enter your email");
+            String email = reader.readLine();
 
             CustomerRequestDto dto = new CustomerRequestDto();
             dto.setFirstName(firstName);
             dto.setLastName(lastName);
+            dto.setEmail(email);
 
             customerFacade.create(dto);
         } catch (IOException e) {
