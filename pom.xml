@@ -21,6 +21,7 @@
         <module>unit_7_di_oop</module>
         <module>dinix</module>
         <module>unit_8_collections</module>
+        <module>unit_9_date_and_generics</module>
     </modules>
 
     <properties>
