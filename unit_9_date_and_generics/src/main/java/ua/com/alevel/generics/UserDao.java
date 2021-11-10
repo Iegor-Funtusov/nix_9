@@ -2,11 +2,11 @@ package ua.com.alevel.generics;
 
 public class UserDao implements CrudDao<User, String> {
 
-    private EntityManager entityManager;
+//    private EntityManager entityManager;
 
     @Override
     public void create(User user) {
-        entityManager.create(user);
+//        entityManager.create(user);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class GenericMethod {
         };
 
         List<Integer> integers = new ArrayList<>();
-        crudDaoSuper.find(integers);
+//        crudDaoSuper.find(integers);
 
         T t = (T) new Object();
         return t;
