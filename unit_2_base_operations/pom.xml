@@ -17,6 +17,14 @@
         <maven.shade.plugin.version>3.2.0</maven.shade.plugin.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>20041127.091804</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <finalName>base_operations</finalName>

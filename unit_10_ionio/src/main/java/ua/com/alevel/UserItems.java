@@ -22,4 +22,12 @@ public class UserItems {
     public void setItems(List<User> items) {
         this.items = items;
     }
+
+    @Override
+    public String toString() {
+        return "UserItems{" +
+                "count=" + count +
+                ", items=" + items +
+                '}';
+    }
 }

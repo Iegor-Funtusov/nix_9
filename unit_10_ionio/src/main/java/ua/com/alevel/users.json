@@ -3,6 +3,13 @@
     "count": 10,
     "items": [
       {
+        "age": 0,
+        "blabla": "firstName",
+        "firstName1": "firstName",
+        "lastName": "lastName",
+        "fullName": "fullName"
+      },
+      {
         "id": "",
         "age": 0,
         "firstName": "firstName",

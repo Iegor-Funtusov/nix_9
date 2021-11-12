@@ -11,4 +11,11 @@ public class Container<DATA> {
     public void setData(DATA data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "Container{" +
+                "data=" + data +
+                '}';
+    }
 }

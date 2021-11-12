@@ -18,7 +18,7 @@
                     <h4>New User</h4>
                 </div>
                 <div class="card-body">
-                    <form action="#" th:action="@{/users/new}" th:object="${userRecord}" method="post">
+                    <form action="#" th:action="@{/users/new}" th:object="${user}" method="post">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name" aria-describedby="titleHelp" placeholder="Enter title" th:field="*{name}">

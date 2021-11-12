@@ -18,6 +18,7 @@ public class UserRestController {
         this.userService = userService;
     }
 
+    @ResponseBody
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok(userService.findAll());
