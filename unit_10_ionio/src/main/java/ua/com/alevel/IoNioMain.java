@@ -13,7 +13,7 @@ public class IoNioMain {
 
     public static void main(String[] args) throws IOException {
 
-        ImageUtils.test();
+//        ImageUtils.test();
 //        new CSVTest().test();
 //        new JsonTest().test();
 
