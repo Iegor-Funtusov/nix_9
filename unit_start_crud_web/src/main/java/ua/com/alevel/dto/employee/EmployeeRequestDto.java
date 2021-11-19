@@ -40,4 +40,14 @@ public class EmployeeRequestDto extends RequestDto {
     public void setDepartmentId(Long departmentId) {
         this.departmentId = departmentId;
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeRequestDto{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", departmentId=" + departmentId +
+                '}';
+    }
 }

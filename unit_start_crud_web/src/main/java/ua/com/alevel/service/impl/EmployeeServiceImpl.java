@@ -1,6 +1,7 @@
 package ua.com.alevel.service.impl;
 
 import org.springframework.stereotype.Service;
+import ua.com.alevel.entity.Department;
 import ua.com.alevel.entity.Employee;
 import ua.com.alevel.repository.EmployeeRepository;
 import ua.com.alevel.service.EmployeeService;
@@ -39,5 +40,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> findAll() {
         return employeeRepository.findAll();
+    }
+
+    @Override
+    public List<Employee> findAllByDepartment(Department department) {
+        return employeeRepository.findAllByDepartment(department);
     }
 }

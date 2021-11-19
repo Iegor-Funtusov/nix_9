@@ -24,4 +24,20 @@ public class EmployeeResponseDto extends ResponseDto {
         super.setCreated(employee.getCreated());
         super.setUpdated(employee.getUpdated());
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
 }

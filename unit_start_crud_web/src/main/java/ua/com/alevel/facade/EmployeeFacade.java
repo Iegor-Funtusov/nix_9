@@ -3,4 +3,9 @@ package ua.com.alevel.facade;
 import ua.com.alevel.dto.employee.EmployeeRequestDto;
 import ua.com.alevel.dto.employee.EmployeeResponseDto;
 
-public interface EmployeeFacade extends BaseFacade<EmployeeRequestDto, EmployeeResponseDto> { }
+import java.util.List;
+
+public interface EmployeeFacade extends BaseFacade<EmployeeRequestDto, EmployeeResponseDto> {
+
+    List<EmployeeResponseDto> findAllByDepartment(Long departmentId);
+}

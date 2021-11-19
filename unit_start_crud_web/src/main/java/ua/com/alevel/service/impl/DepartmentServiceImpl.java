@@ -2,6 +2,9 @@ package ua.com.alevel.service.impl;
 
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import ua.com.alevel.entity.Department;
 import ua.com.alevel.repository.DepartmentRepository;
 import ua.com.alevel.repository.EmployeeRepository;
@@ -34,6 +37,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.REPEATABLE_READ, rollbackFor = Exception.class)
     public void delete(Long id) {
         Optional<Department> department = departmentRepository.findById(id);
         if (department.isPresent()) {

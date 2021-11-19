@@ -6,13 +6,6 @@
 <head>
     <meta charset="utf-8">
     <title>Details Department</title>
-
-    <style type="text/css">
-        .like-dislike-section {
-            cursor: pointer;
-        }
-    </style>
-
 </head>
 <body>
 
@@ -47,6 +40,14 @@
                             <td th:text="${#calendars.format(department.getUpdated(),'dd MMMM yyyy')}"></td>
                         </tr>
                     </table>
+                    <hr>
+                    <div>
+                        <a th:href="@{'/employees/new/' + ${department.getId()}}" type="button" class="btn btn-primary">Add new employee</a>
+                    </div>
+                    <hr>
+                    <div>
+                        <a th:href="@{'/employees/departments/' + ${department.getId()}}" type="button" class="btn btn-primary">Show all employee</a>
+                    </div>
                 </div>
             </div>
         </div>

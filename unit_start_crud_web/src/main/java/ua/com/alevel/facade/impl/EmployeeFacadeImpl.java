@@ -55,8 +55,16 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
 
     @Override
     public List<EmployeeResponseDto> findAll() {
-        return employeeService.findAll()
-                .stream()
+        return convertToDtoByEntity(employeeService.findAll());
+    }
+
+    @Override
+    public List<EmployeeResponseDto> findAllByDepartment(Long departmentId) {
+        return convertToDtoByEntity(employeeService.findAllByDepartment(departmentService.findById(departmentId)));
+    }
+
+    private List<EmployeeResponseDto> convertToDtoByEntity(List<Employee> employees) {
+        return employees.stream()
                 .map(EmployeeResponseDto::new)
                 .collect(Collectors.toList());
     }
