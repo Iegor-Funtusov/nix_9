@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Employees</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    All Employees
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>first name</th>
+                            <th>last name</th>
+                            <th>age</th>
+                            <th>department id</th>
+                            <th>created</th>
+                            <th>details</th>
+                            <th>delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="employee,iter : ${employees}">
+                            <td th:text="${iter.count}"></td>
+                            <td th:text="${employee.getFirstName()}"></td>
+                            <td th:text="${employee.getLastName()}"></td>
+                            <td th:text="${employee.getAge()}"></td>
+                            <td>
+                                <a th:href="@{'/departments/details/' + ${employee.getDepartment().getId()}}" type="button" class="btn btn-link" th:text="${employee.getDepartment().getId()}">details</a>
+                            </td>
+                            <td th:text="${#calendars.format(employee.getCreated(),'dd MMMM yyyy')}"></td>
+                            <td>
+                                <a th:href="@{'/employees/details/' + ${employee.getId()}}" type="button" class="btn btn-primary">details</a>
+                            </td>
+                            <td>
+                                <a th:href="@{'/employees/delete/' + ${employee.getId()}}" type="button" class="btn btn-danger">delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

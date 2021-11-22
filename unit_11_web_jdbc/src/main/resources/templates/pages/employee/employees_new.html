@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>New Employee</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4>New Employee</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/employees/new}" th:object="${employee}" method="post">
+                        <input type="hidden" th:field="*{departmentId}" th:value="${departmentId}" th:attr="name='departmentId'">
+                        <div class="form-group">
+                            <label for="firstName">first name</label>
+                            <input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Enter first name" th:field="*{firstName}">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">last name</label>
+                            <input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter last name" th:field="*{lastName}">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">age</label>
+                            <input type="text" class="form-control" id="age" aria-describedby="age" placeholder="Enter age" th:field="*{age}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
