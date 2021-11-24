@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/data_table}">
+<head>
+    <meta charset="utf-8">
+    <title>authors</title>
+</head>
+<body>
+
+<div layout:fragment="data_table_content">
+
+    <tr th:each="author,iter : ${pageData.getItems()}">
+        <td th:text="${iter.count}"></td>
+        <td th:text="${author.getFirstName()}"></td>
+        <td th:text="${author.getLastName()}"></td>
+        <td th:text="${author.getBookCount()}"></td>
+        <td>
+            <a th:href="@{'/authors/details/' + ${author.getId()}}" type="button" class="btn btn-primary">details</a>
+        </td>
+        <td>
+            <a th:href="@{'/authors/delete/' + ${author.getId()}}" type="button" class="btn btn-danger">delete</a>
+        </td>
+    </tr>
+
+</div>
+
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{layout}">-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <title>authors</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div layout:fragment="content">-->
+
+<!--    <div class="row">-->
+<!--        <div class="col-12">-->
+<!--            <div class="card mb-2 mt-2">-->
+<!--                <div class="card-header">-->
+<!--                    All authors-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <table class="table table-sm table-hover">-->
+<!--                        <thead>-->
+<!--                        <tr>-->
+<!--                            <th>#</th>-->
+<!--                            <th>first name</th>-->
+<!--                            <th>last name</th>-->
+<!--                            <th>book count</th>-->
+<!--                            <th>details</th>-->
+<!--                            <th>delete</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                        <tr th:each="author,iter : ${authorData.getItems()}">-->
+<!--                            <td th:text="${iter.count}"></td>-->
+<!--                            <td th:text="${author.getFirstName()}"></td>-->
+<!--                            <td th:text="${author.getLastName()}"></td>-->
+<!--                            <td th:text="${author.getBookCount()}"></td>-->
+<!--                            <td>-->
+<!--                                <a th:href="@{'/authors/details/' + ${author.getId()}}" type="button" class="btn btn-primary">details</a>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <a th:href="@{'/authors/delete/' + ${author.getId()}}" type="button" class="btn btn-danger">delete</a>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="col-12">-->
+<!--            <div class="card mt-2">-->
+<!--                <div class="card-header">-->
+<!--                    <a type="button" class="btn btn-primary" th:href="@{/authors/new}">Add</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>books</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    All books
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>image</th>
+                            <th>bookName</th>
+                            <th>pageSize</th>
+                            <th>publicationDate</th>
+                            <th>created</th>
+                            <th>details</th>
+                            <th>delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="book,iter : ${pageData.getItems()}">
+                            <td th:text="${iter.count}"></td>
+                            <td>
+                                <img th:src="@{${book.getImageUrl()}}" width="45" height="45"/>
+                            </td>
+                            <td th:text="${book.getBookName()}"></td>
+                            <td th:text="${book.getPageSize()}"></td>
+                            <td th:text="${book.getPublicationDate()}"></td>
+                            <td th:text="${#calendars.format(book.getCreated(),'dd MMMM yyyy')}"></td>
+                            <td>
+                                <a th:href="@{'/books/details/' + ${book.getId()}}" type="button" class="btn btn-primary">details</a>
+                            </td>
+                            <td>
+                                <a th:href="@{'/books/delete/' + ${book.getId()}}" type="button" class="btn btn-danger">delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <a type="button" class="btn btn-primary" th:href="@{/books/new}">Add</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

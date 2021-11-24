@@ -1,0 +1,9 @@
+.page-link {
+    height: 100%;
+    width: 3em;
+    text-align: center;
+}
+
+.dropdown-menu {
+    min-width: 2em !important;
+}
