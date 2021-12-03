@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ua.com.alevel</groupId>
-    <artifactId>unit_15_hibernate</artifactId>
+    <artifactId>unit_16_transaction</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>unit_15_hibernate</name>
-    <description>unit_15_hibernate</description>
+    <name>unit_16_transaction</name>
+    <description>unit_16_transaction</description>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -28,19 +28,8 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
