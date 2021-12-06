@@ -26,6 +26,6 @@ public class TransactionApplication {
 
     @EventListener(ApplicationReadyEvent.class)
     public void test() {
-        dbTest.createDepartment();
+        dbTest.searchByCustomQuery();
     }
 }

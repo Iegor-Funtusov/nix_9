@@ -1,5 +1,6 @@
 package ua.com.alevel.persistence.crud.impl;
 
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -51,6 +52,10 @@ public class CrudRepositoryHelperImpl<
         Sort sort = orderParam.equals("desc")
                 ? Sort.by(sortParam).descending()
                 : Sort.by(sortParam).ascending();
+
+        if (MapUtils.isNotEmpty(dataTableRequest.getRequestParamMap())) {
+            System.out.println("dataTableRequest = " + dataTableRequest.getRequestParamMap());
+        }
 
         PageRequest request = PageRequest.of(page, size, sort);
 
