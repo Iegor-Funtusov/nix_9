@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Details User</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    User
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>id</th>
+                            <td th:text="${user.getId()}"></td>
+                        </tr>
+                        <tr>
+                            <th>email</th>
+                            <td th:text="${user.getEmail()}"></td>
+                        </tr>
+                        <tr>
+                            <th>phone</th>
+                            <td th:text="${user.getPhone()}"></td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <div>
+                        <a th:href="@{'/accounts/user/' + ${user.getId()}}" type="button" class="btn btn-primary">show all accounts</a>
+                    </div>
+<!--                    <hr>-->
+<!--                    <div>-->
+<!--                        <a th:href="@{'/employees/departments/' + ${department.getId()}}" type="button" class="btn btn-primary">Show all employee</a>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

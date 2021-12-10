@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>accs</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    All accs
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>id</th>
+                            <th>balance</th>
+                            <th>user id</th>
+                            <th>delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="account,iter : ${accounts}">
+                            <td th:text="${iter.count}"></td>
+                            <td>
+                                <a th:href="@{'/accounts/details/' + ${account.getId()}}" type="button" class="btn btn-link" th:text="${account.getId()}">id</a>
+                            </td>
+                            <td th:text="${account.getBalance()}"></td>
+                            <td th:text="${account.getUserId()}"></td>
+                            <td>
+                                <a th:href="@{'/users/delete/' + ${account.getId()}}" type="button" class="btn btn-danger">delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

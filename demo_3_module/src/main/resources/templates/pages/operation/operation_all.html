@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>oper</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    All oper
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>id</th>
+                            <th>category</th>
+                            <th>account</th>
+                            <th>created</th>
+                            <th>sum</th>
+                            <th>delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="operation,iter : ${operations}">
+                            <td th:text="${iter.count}"></td>
+                            <td>
+                                <a th:href="@{'/operations/details/' + ${operation.getId()}}" type="button" class="btn btn-link" th:text="${operation.getId()}">id</a>
+                            </td>
+                            <td th:text="${operation.getCategoryId()}"></td>
+                            <td th:text="${operation.getAccountId()}"></td>
+                            <td th:text="${#calendars.format(operation.getCreated(),'dd MMMM yyyy')}"></td>
+                            <td th:text="${operation.getAmount().doubleValue()}"></td>
+                            <td>
+                                <a th:href="@{'/operations/delete/' + ${operation.getId()}}" type="button" class="btn btn-danger">delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

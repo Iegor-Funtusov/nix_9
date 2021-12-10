@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Departments</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    All Users
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>id</th>
+                            <th>email</th>
+                            <th>phone</th>
+                            <th>delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user,iter : ${users}">
+                            <td th:text="${iter.count}"></td>
+                            <td>
+                                <a th:href="@{'/users/details/' + ${user.getId()}}" type="button" class="btn btn-link" th:text="${user.getId()}">id</a>
+                            </td>
+                            <td th:text="${user.getEmail()}"></td>
+                            <td th:text="${user.getPhone()}"></td>
+                            <td>
+                                <a th:href="@{'/users/delete/' + ${user.getId()}}" type="button" class="btn btn-danger">delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
