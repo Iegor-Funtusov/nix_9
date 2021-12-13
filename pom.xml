@@ -24,6 +24,7 @@
         <module>unit_9_date_and_generics</module>
         <module>unit_10_ionio</module>
         <module>dinix_orm</module>
+        <module>unit_18_start_web</module>
     </modules>
 
     <properties>
