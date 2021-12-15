@@ -25,6 +25,7 @@
         <module>unit_10_ionio</module>
         <module>dinix_orm</module>
         <module>unit_18_start_web</module>
+        <module>unit_19_clean_spring</module>
     </modules>
 
     <properties>

@@ -1,0 +1,14 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="departmentDao" class="ua.com.alevel.dao.impl.DepartmentDaoImpl">
+        <constructor-arg ref="entityManagerFactory"/>
+    </bean>
+
+    <bean id="employeeDao" class="ua.com.alevel.dao.impl.EmployeeDaoImpl">
+        <constructor-arg ref="entityManagerFactory"/>
+    </bean>
+
+</beans>
