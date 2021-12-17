@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body {
+    background: url('https://miro.medium.com/max/5642/1*igvVvVLNlguJW-009OEvuw.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+a.nav-item.nav-link {
+    color: white;
+}
+
+.sort {
+    cursor: pointer;
+    margin-right: 2em;
+}

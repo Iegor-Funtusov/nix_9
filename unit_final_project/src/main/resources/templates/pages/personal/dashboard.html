@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{fragments/personal_layout}">
+<head>
+  <meta charset="utf-8">
+  <title>Create an account</title>
+</head>
+<body>
+
+<div layout:fragment="personal_content">
+  <h1>
+    Personal
+    Logged user: <span sec:authentication="name"></span>
+  </h1>
+</div>
+
+</body>
+</html>

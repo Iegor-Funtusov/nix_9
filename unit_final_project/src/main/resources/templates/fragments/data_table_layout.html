@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/admin_layout}">
+<head>
+    <meta charset="utf-8">
+    <title>All Personals</title>
+</head>
+<body>
+
+<div layout:fragment="admin_content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header" th:text="${cardHeader}">
+                    All
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                        <tr>
+                            <th th:each="columnHeader : ${headerDataList}">
+                                <th:block th:if="${columnHeader.isSortable()}">
+                                    <th:block th:if="${columnHeader.isActive()}">
+                                        <span th:text="${columnHeader.getHeaderName()}"></span>
+                                        <i th:if="${columnHeader.getOrder().equals('desc')}" class="fa fa-sort-desc float-right sort" aria-hidden="true" th:data-sort="${columnHeader.getSort()}" th:data-order="${columnHeader.getOrder()}" onclick="runSort(this.getAttribute('data-sort'), this.getAttribute('data-order'))"></i>
+                                        <i th:if="${columnHeader.getOrder().equals('asc')}" class="fa fa-sort-asc float-right sort" aria-hidden="true" th:data-sort="${columnHeader.getSort()}" th:data-order="${columnHeader.getOrder()}" onclick="runSort(this.getAttribute('data-sort'), this.getAttribute('data-order'))"></i>
+                                    </th:block>
+                                    <th:block th:unless="${columnHeader.isActive()}">
+                                        <span th:text="${columnHeader.getHeaderName()}"></span>
+                                        <i class="fa fa-sort float-right sort" aria-hidden="true" th:data-sort="${columnHeader.getSort()}" th:data-order="${columnHeader.getOrder()}" onclick="runSort(this.getAttribute('data-sort'), this.getAttribute('data-order'))"></i>
+                                    </th:block>
+                                </th:block>
+
+                                <span th:unless="${columnHeader.isSortable()}" th:text="${columnHeader.getHeaderName()}"></span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <section layout:fragment="data_table_content"></section>
+
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="p-1">Showing [[${pageData.getCurrentShowFromEntries()}]] to [[${pageData.getCurrentShowToEntries()}]] of [[${pageData.getItemsSize()}]] entries</div>
+                        <div class="p-1">
+                            <div class="dropdown dropup">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span th:text="${pageData.getPageSize()}"></span>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <section th:each="size : ${pageData.getPageSizeItems()}">
+                                        <a class="dropdown-item" href="#" th:onclick="|runPagination(1, ${size}, 0)|" th:text="${size}">@size</a>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-1" style="margin-top: 1em !important;">
+                            <ul class="pagination align-middle">
+                                <li class="page-item" th:classappend="${pageData.isShowFirst() ? '' : 'disabled'}">
+                                    <a class="page-link" href="#" th:onclick="|runPagination(1, ${pageData.getPageSize()}, 0)|" title="First Page"><i class="fa fa-fast-backward"></i></a>
+                                </li>
+                                <li class="page-item" th:classappend="${pageData.isShowPrevious() ? '' : 'disabled'}">
+                                    <a class="page-link" href="#" th:onclick="|runPagination(${pageData.getCurrentPage()}, ${pageData.getPageSize()}, -1)|" title="Previous Page"><i class="fa fa-backward"></i></a>
+                                </li>
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="" th:text="${pageData.getCurrentPage()}">@Model.currentPage</a>
+                                </li>
+                                <li class="page-item" th:classappend="${pageData.isShowNext() ? '' : 'disabled'}">
+                                    <a class="page-link" href="#" th:onclick="|runPagination(${pageData.getCurrentPage()}, ${pageData.getPageSize()}, 1)|" title="Next Page"><i class="fa fa-forward"></i></a>
+                                </li>
+                                <li class="page-item" th:classappend="${pageData.isShowLast() ? '' : 'disabled'}">
+                                    <a class="page-link" href="#" th:onclick="|runPagination(${pageData.getTotalPageSize()}, ${pageData.getPageSize()}, 0)|" title="Last Page"><i class="fa fa-fast-forward"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="p-1">
+                            <a class="page-link btn btn-secondary" href="#" th:onclick="|runPagination(${pageData.getCurrentPage()}, ${pageData.getPageSize()}, 0)|" title="Refresh Page"><i class="fa fa-refresh"></i></a>
+                        </div>
+                        <div class="p-1">
+                            <a class="page-link btn btn-secondary" href="#" onclick="runPagination(1, 10, 0)" title="Reset Page"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form method="POST" th:action="@{${createUrl}}" id="personalSearch">
+        <input type="submit"
+               id="personalSearchSubmit"
+               style="visibility: hidden"
+        />
+    </form>
+
+    <span th:data-sort="${pageData.getSort()}"
+          th:data-order="${pageData.getOrder()}"
+          th:data-page="${pageData.getCurrentPage()}"
+          th:data-size="${pageData.getPageSize()}"
+          id="pageData">
+    </span>
+
+</div>
+
+<th:block layout:fragment="scripts">
+    <script type="text/javascript" th:src="@{/js/pagination.js}"></script>
+</th:block>
+</body>
+</html>
