@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/admin_layout}">
+<head>
+    <meta charset="utf-8">
+    <title>New Book</title>
+</head>
+<body>
+
+<div layout:fragment="admin_content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4>New book</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/admin/books/create}" th:object="${book}" method="post">
+                        <div class="form-group">
+                            <label for="bookName">Book name</label>
+                            <input type="text" class="form-control" id="bookName" aria-describedby="bookName" placeholder="Enter book name" th:field="*{bookName}">
+                        </div>
+                        <div class="form-group">
+                            <label for="pageSize">Book page size</label>
+                            <input type="number" class="form-control" id="pageSize" aria-describedby="pageSize" placeholder="Enter book page size" th:field="*{pageSize}">
+                        </div>
+                        <div class="form-group">
+                            <label for="publicationDate">Book publication date</label>
+                            <input type="number" class="form-control" id="publicationDate" aria-describedby="publicationDate" placeholder="Enter book publicationDate" th:field="*{publicationDate}">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Book description</label>
+                            <textarea class="form-control" id="description" placeholder="Enter book description" rows="6" th:field="*{description}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="bookImage">Book image url</label>
+                            <input type="text" class="form-control" id="bookImage" aria-describedby="bookImage" placeholder="Enter book image url" th:field="*{bookImage}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

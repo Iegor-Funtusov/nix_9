@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,7 +34,12 @@ public class Book extends BaseEntity {
     @Column(name = "publication_date")
     private Integer publicationDate;
 
-    @ManyToOne
+    @Column(precision = 7, scale = 2)
+    private BigDecimal price;
+
+    private Integer quantity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Publisher publisher;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "books")
@@ -98,5 +104,21 @@ public class Book extends BaseEntity {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }

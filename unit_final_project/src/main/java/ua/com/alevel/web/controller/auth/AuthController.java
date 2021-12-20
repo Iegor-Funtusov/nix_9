@@ -36,11 +36,6 @@ public class AuthController extends AbstractController {
         return redirectProcess(model);
     }
 
-    @GetMapping("/open")
-    public String open(Model model) {
-        return "pages/open/open";
-    }
-
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
         showMessage(model, false);

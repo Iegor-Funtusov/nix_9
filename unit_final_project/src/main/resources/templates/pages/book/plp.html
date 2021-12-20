@@ -1,12 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{fragments/open_layout}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<div class="container-fluid">
+<div layout:fragment="open_content">
+    <div class="row mt-4">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3" th:each="book : ${bookList}">
+            <div class="card mt-2 mb-2">
 
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img th:src="${book.getImageUrl()}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${book.getBookName()}"></h5>
+                                <p class="card-text" th:text="${book.getPrice()}"></p>
+                                <div th:each="author : ${book.getAuthors()}">
+                                    <p class="card-text" th:text="${author}"></p>
+                                </div>
+                                <button class="btn btn-primary">add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
