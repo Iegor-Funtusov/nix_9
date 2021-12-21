@@ -10,7 +10,6 @@ import ua.com.alevel.config.security.SecurityService;
 import ua.com.alevel.facade.AuthValidatorFacade;
 import ua.com.alevel.facade.RegistrationFacade;
 import ua.com.alevel.persistence.type.RoleType;
-
 import ua.com.alevel.util.SecurityUtil;
 import ua.com.alevel.web.controller.AbstractController;
 import ua.com.alevel.web.dto.request.register.AuthDto;
@@ -29,11 +28,6 @@ public class AuthController extends AbstractController {
         this.registrationFacade = registrationFacade;
         this.authValidatorFacade = authValidatorFacade;
         this.securityService = securityService;
-    }
-
-    @GetMapping("/")
-    public String main(Model model) {
-        return redirectProcess(model);
     }
 
     @GetMapping("/login")

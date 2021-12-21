@@ -25,7 +25,7 @@ public class AdminBookController extends AbstractController {
 
     private final HeaderName[] columnNames = new HeaderName[] {
             new HeaderName("#", null, null),
-            new HeaderName("image", "image", null),
+            new HeaderName("image", null, null),
             new HeaderName("book name", "bookName", "book_name"),
             new HeaderName("page size", "pageSize", "page_size"),
             new HeaderName("publication", "publicationDate", "publication_date"),

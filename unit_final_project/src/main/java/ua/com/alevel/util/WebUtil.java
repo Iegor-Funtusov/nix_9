@@ -1,7 +1,6 @@
 package ua.com.alevel.util;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.context.request.WebRequest;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
@@ -9,7 +8,7 @@ import ua.com.alevel.persistence.entity.BaseEntity;
 import ua.com.alevel.web.dto.response.PageData;
 import ua.com.alevel.web.dto.response.ResponseDto;
 
-public final class WebRequestUtil {
+public final class WebUtil {
 
     private static final String PAGE_PARAM = "page";
     private static final String SIZE_PARAM = "size";
@@ -19,8 +18,9 @@ public final class WebRequestUtil {
     public static final String DEFAULT_ORDER_PARAM_VALUE = "desc";
     public static final int DEFAULT_PAGE_PARAM_VALUE = 1;
     public static final int DEFAULT_SIZE_PARAM_VALUE = 10;
+    public static final String PUBLISHER_PARAM = "publisher";
 
-    private WebRequestUtil() { }
+    private WebUtil() { }
 
     public static DataTableRequest generateDataTableRequestByWebRequest(WebRequest request) {
         DataTableRequest dataTableRequest = new DataTableRequest();

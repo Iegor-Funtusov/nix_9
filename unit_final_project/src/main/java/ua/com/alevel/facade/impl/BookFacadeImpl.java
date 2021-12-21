@@ -2,13 +2,12 @@ package ua.com.alevel.facade.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
-
 import ua.com.alevel.facade.BookFacade;
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.book.Book;
 import ua.com.alevel.service.BookService;
-import ua.com.alevel.util.WebRequestUtil;
+import ua.com.alevel.util.WebUtil;
 import ua.com.alevel.web.dto.request.BookRequestDto;
 import ua.com.alevel.web.dto.response.BookResponseDto;
 import ua.com.alevel.web.dto.response.PageData;
@@ -64,13 +63,13 @@ public class BookFacadeImpl implements BookFacade {
 
     @Override
     public PageData<BookResponseDto> findAll(WebRequest request) {
-        DataTableRequest dataTableRequest = WebRequestUtil.generateDataTableRequestByWebRequest(request);
+        DataTableRequest dataTableRequest = WebUtil.generateDataTableRequestByWebRequest(request);
         DataTableResponse<Book> tableResponse = bookService.findAll(dataTableRequest);
         List<BookResponseDto> books = tableResponse.getItems().stream().
                 map(BookResponseDto::new).
                 collect(Collectors.toList());
 
-        PageData<BookResponseDto> pageData = (PageData<BookResponseDto>) WebRequestUtil.initPageData(tableResponse);
+        PageData<BookResponseDto> pageData = (PageData<BookResponseDto>) WebUtil.initPageData(tableResponse);
         pageData.setItems(books);
         return pageData;
     }

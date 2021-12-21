@@ -13,10 +13,10 @@ insert into authors values (12, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 
 insert into authors values (13, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Alan', 'Mycroft');
 insert into authors values (14, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Scott', 'Oaks');
 
-insert into publishers values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Manning Publications Co.', 'US');
-insert into publishers values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Prentice Hall', 'US');
-insert into publishers values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Addison-Wesley Professional', 'US');
-insert into publishers values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'O''Reilly Media', 'US');
+insert into publishers values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'US', 'Manning Publications Co.');
+insert into publishers values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'US', 'Prentice Hall');
+insert into publishers values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'US', 'Addison-Wesley Professional');
+insert into publishers values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'US', 'O''Reilly Media');
 
 insert into books values (1, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Java Persistence with Hibernate. 2-end edition', 'Java Persistence with Hibernate, Second Edition explores Hibernate by developing an application that ties together hundreds of individual examples. In this revised edition, authors Christian Bauer, Gavin King, and Gary Gregory cover Hibernate 5 in detail with the Java Persistence 2.1 standard (JSR 338). All examples have been updated for the latest Hibernate and Java EE specification versions.
 
@@ -43,7 +43,7 @@ The book assumes a working knowledge of Java.
 
 About the Authors
 
-Christian Bauer is a member of the Hibernate developer team and a trainer and consultant. Gavin King is the founder of the Hibernate project and a member of the Java Persistence expert group (JSR 220). Gary Gregory is a principal software engineer working on application servers and legacy integration.', 'https://balka-book.com/files/2021/05_03/21_33/u_files_store_1_487055.jpg', 580, 2016, 1);
+Christian Bauer is a member of the Hibernate developer team and a trainer and consultant. Gavin King is the founder of the Hibernate project and a member of the Java Persistence expert group (JSR 220). Gary Gregory is a principal software engineer working on application servers and legacy integration.', 'https://balka-book.com/files/2021/05_03/21_33/u_files_store_1_487055.jpg', 580, 00.00, 2016, 0, 1);
 
 insert into books values (2, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Thinking in Java (4th Edition)', '“Thinking in Java should be read cover to cover by every Java programmer, then kept close at hand for frequent reference. The exercises are challenging, and the chapter on Collections is superb! Not only did this book help me to pass the Sun Certified Java Programmer exam; it’s also the first book I turn to whenever I have a Java question.”
 —Jim Pleger, Loudoun County (Virginia) Government
@@ -87,7 +87,7 @@ Thinking in Java has earned raves from programmers worldwide for its extraordina
     Thorough coverage of fundamentals; demonstrates advanced topics.
     Explains sound object-oriented principles.
     Hands-On Java Seminar CD available online, with full multimedia seminar by Bruce Eckel.
-    Live seminars, consulting, and reviews available. See www.MindView.net', 'https://balka-book.com/files/2021/05_03/21_34/u_files_store_1_490060.jpg', 1150, 2006, 2);
+    Live seminars, consulting, and reviews available. See www.MindView.net', 'https://balka-book.com/files/2021/05_03/21_34/u_files_store_1_490060.jpg', 1150, 00.00, 2006, 0, 2);
 
 insert into books values (3, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Java Concurrency in Practice', '"I was fortunate indeed to have worked with a fantastic team on the design and implementation of the concurrency features added to the Java platform in Java 5.0 and Java 6. Now this same team provides the best explanation yet of these new features, and of concurrency in general. Concurrency is no longer a subject for advanced users only. Every Java developer should read this book."
 --Martin Buchholz
@@ -132,7 +132,7 @@ Techniques for building and composing thread-safe classes
 Using the concurrency building blocks in java.util.concurrent
 Performance optimization dos and don''ts
 Testing concurrent programs
-Advanced topics such as atomic variables, nonblocking algorithms, and the Java Memory Model', 'https://balka-book.com/files/2021/05_03/21_28/u_files_store_1_472075.jpg', 384, 2006, 3);
+Advanced topics such as atomic variables, nonblocking algorithms, and the Java Memory Model', 'https://balka-book.com/files/2021/05_03/21_28/u_files_store_1_472075.jpg', 384, 00.00, 2006, 0, 3);
 
 insert into books values (4, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Effective Java. 3rd Edition', 'The Definitive Guide to Java Platform Best Practices—Updated for Java 9
 
@@ -152,7 +152,7 @@ New coverage includes
     New library features such as the Optional<T> interface, java.time, and the convenience factory methods for collections
 
 About the Author
-Joshua Bloch is a professor at Carnegie Mellon University. He was formerly the chief Java architect at Google, a distinguished engineer at Sun Microsystems, and a senior systems designer at Transarc. He led the design and implementation of numerous Java platform features, including the JDK 5.0 language enhancements and the Java Collections Framework. He holds a Ph.D. in computer science from Carnegie Mellon University and a B.S. in computer science from Columbia University.', 'https://balka-book.com/files/2021/05_03/21_27/u_files_store_1_468120.jpg', 392, 2018, 3);
+Joshua Bloch is a professor at Carnegie Mellon University. He was formerly the chief Java architect at Google, a distinguished engineer at Sun Microsystems, and a senior systems designer at Transarc. He led the design and implementation of numerous Java platform features, including the JDK 5.0 language enhancements and the Java Collections Framework. He holds a Ph.D. in computer science from Carnegie Mellon University and a B.S. in computer science from Columbia University.', 'https://balka-book.com/files/2021/05_03/21_27/u_files_store_1_468120.jpg', 392, 00.00, 2018, 0, 3);
 
 insert into books values (5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Java 8 in Action. Lambdas, Streams, and functional-style programming', 'Summary
 
@@ -178,7 +178,7 @@ About the Authors
 
 Raoul-Gabriel Urma is a software engineer, speaker, trainer, and PhD candidate at the University of Cambridge.
 
-Mario Fusco is an engineer at Red Hat and creator of the lambdaj library. Alan Mycroft is a professor at Cambridge and cofounder of the Raspberry Pi Foundation.', 'https://balka-book.com/files/2021/05_03/21_28/u_files_store_1_472037.jpg', 394, 2015, 1);
+Mario Fusco is an engineer at Red Hat and creator of the lambdaj library. Alan Mycroft is a professor at Cambridge and cofounder of the Raspberry Pi Foundation.', 'https://balka-book.com/files/2021/05_03/21_28/u_files_store_1_472037.jpg', 394, 00.00, 2015, 0, 1);
 
 insert into books values (6, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Java Performance: In-Depth Advice for Tuning and Programming Java 8, 11, and Beyond 2nd Edition', 'Coding and testing are generally considered separate areas of expertise. In this practical book, Java expert Scott Oaks takes the approach that anyone who works with Java should be equally adept at understanding how code behaves in the Java Virtual Machine—including the tunings likely to help performance. This updated second edition helps you gain in-depth knowledge of Java application performance using both the JVM and the Java platform.
 
@@ -194,7 +194,7 @@ Developers and performance engineers alike will learn a variety of features, too
 
 About the Author
 
-Scott Oaks is an architect at Oracle Corporation, where he works on the performance of Oracle’s middleware software. Prior to joining Oracle, he worked for years at Sun Microsystems, specializing in many disparate technologies from the SunOS kernel to network programming and RPCs to windows systems and the OPEN LOOK Virtual Window Manager. In 1996, Scott became a Java evangelist for Sun and in 2001 joined their Java Performance group--which has been his primary focus ever since. Scott also authored O’Reilly’s Java Security, Java Threads, JXTA in a Nutshell, and Jini in a Nutshell titles.', 'https://balka-book.com/files/2021/05_03/21_54/u_files_store_1_559706.jpg', 450, 2020, 4);
+Scott Oaks is an architect at Oracle Corporation, where he works on the performance of Oracle’s middleware software. Prior to joining Oracle, he worked for years at Sun Microsystems, specializing in many disparate technologies from the SunOS kernel to network programming and RPCs to windows systems and the OPEN LOOK Virtual Window Manager. In 1996, Scott became a Java evangelist for Sun and in 2001 joined their Java Performance group--which has been his primary focus ever since. Scott also authored O’Reilly’s Java Security, Java Threads, JXTA in a Nutshell, and Jini in a Nutshell titles.', 'https://balka-book.com/files/2021/05_03/21_54/u_files_store_1_559706.jpg', 450, 00.00, 2020, 0, 4);
 
 insert into books values (7, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), true, 'Java Performance: The Definitive Guide: Getting the Most Out of Your Code 1st Edition', 'Coding and testing are often considered separate areas of expertise. In this comprehensive guide, author and Java expert Scott Oaks takes the approach that anyone who works with Java should be equally adept at understanding how code behaves in the JVM, as well as the tunings likely to help its performance.
 
@@ -207,7 +207,7 @@ You’ll gain in-depth knowledge of Java application performance, using the Java
     Use techniques to manage heap memory and JVM native memory
     Maximize Java threading and synchronization performance features
     Tackle performance issues in Java EE and Java SE APIs
-    Improve Java-driven database application performance', 'https://balka-book.com/files/2021/05_03/21_42/u_files_store_1_517038.jpg', 426, 2014, 4);
+    Improve Java-driven database application performance', 'https://balka-book.com/files/2021/05_03/21_42/u_files_store_1_517038.jpg', 426, 00.00, 2014, 0, 4);
 
 insert into author_book values (1, 1);
 insert into author_book values (2, 1);

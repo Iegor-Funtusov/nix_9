@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static ua.com.alevel.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
+import static ua.com.alevel.util.WebUtil.DEFAULT_ORDER_PARAM_VALUE;
 
 public abstract class AbstractController {
 

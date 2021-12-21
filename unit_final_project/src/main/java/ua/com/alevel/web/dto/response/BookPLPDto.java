@@ -2,6 +2,7 @@ package ua.com.alevel.web.dto.response;
 
 import org.apache.commons.collections4.CollectionUtils;
 import ua.com.alevel.persistence.entity.book.Book;
+import ua.com.alevel.persistence.entity.book.Genre;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -13,20 +14,35 @@ public class BookPLPDto {
     private Boolean visible;
     private String bookName;
     private String imageUrl;
+    private BigDecimal actualPrice;
     private BigDecimal price;
     private Set<String> authors;
+    private Set<String> genres;
+    private Publisher publisher;
 
     public BookPLPDto(Book book) {
         this.id = book.getId();
-        this.visible = book.getQuantity() != null && book.getQuantity() != 0;
+        this.visible = book.getVisible();
         this.bookName = book.getBookName();
         this.imageUrl = book.getImageUrl();
         this.price = book.getPrice();
+        this.actualPrice = book.getPrice();
         if (CollectionUtils.isNotEmpty(book.getAuthors())) {
             this.authors = book.getAuthors()
                     .stream()
                     .map(author -> author.getFirstName() + " " + author.getLastName())
                     .collect(Collectors.toSet());
+        }
+        if (CollectionUtils.isNotEmpty(book.getGenres())) {
+            this.genres = book.getGenres()
+                    .stream()
+                    .map(Genre::getType)
+                    .collect(Collectors.toSet());
+        }
+        if (book.getPublisher() != null) {
+            this.publisher = new Publisher(
+                    book.getPublisher().getId(),
+                    book.getPublisher().getName());
         }
     }
 
@@ -76,5 +92,40 @@ public class BookPLPDto {
 
     public void setAuthors(Set<String> authors) {
         this.authors = authors;
+    }
+
+    public BigDecimal getActualPrice() {
+        return actualPrice;
+    }
+
+    public void setActualPrice(BigDecimal actualPrice) {
+        this.actualPrice = actualPrice;
+    }
+
+    public Set<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<String> genres) {
+        this.genres = genres;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    private record Publisher(Long id, String name) {
+
+        public Long getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 }
