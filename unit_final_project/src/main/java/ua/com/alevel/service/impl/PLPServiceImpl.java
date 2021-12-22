@@ -1,6 +1,7 @@
 package ua.com.alevel.service.impl;
 
 import org.springframework.stereotype.Service;
+import ua.com.alevel.exception.EntityNotFoundException;
 import ua.com.alevel.persistence.entity.book.Book;
 import ua.com.alevel.persistence.entity.publisher.Publisher;
 import ua.com.alevel.persistence.repository.book.BookRepository;
@@ -30,9 +31,10 @@ public class PLPServiceImpl implements PLPService {
         if (queryMap.get(WebUtil.PUBLISHER_PARAM) != null) {
             Long publisherId = (Long) queryMap.get(WebUtil.PUBLISHER_PARAM);
             Optional<Publisher> publisher = publisherRepository.findById(publisherId);
-            if (publisher.isPresent()) {
-                return bookRepository.findByPublisher(publisher.get());
+            if (publisher.isEmpty()) {
+                throw new EntityNotFoundException("this publisher not found");
             }
+            return bookRepository.findByPublisher(publisher.get());
         }
         return bookRepository.findAll();
     }

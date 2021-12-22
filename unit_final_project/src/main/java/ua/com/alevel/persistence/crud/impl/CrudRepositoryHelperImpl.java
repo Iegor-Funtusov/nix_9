@@ -38,6 +38,7 @@ public class CrudRepositoryHelperImpl<
 
     @Override
     public Optional<E> findById(R repository, Long id) {
+        checkExist(repository, id);
         return repository.findById(id);
     }
 
