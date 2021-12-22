@@ -8,8 +8,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+
         a {
             text-decoration: none !important
+        }
+
+        .fixed-container {
+            min-width: 1200px;
+            overflow: scroll;
         }
 
         .card-product-list,
@@ -18,7 +24,7 @@
         }
 
         .card {
-            width: 500px;
+            width: 500px !important;
             position: relative;
             display: -webkit-box;
             display: -ms-flexbox;
@@ -159,20 +165,21 @@
 <body>
 <div layout:fragment="open_content">
 
-    <div class="container d-flex justify-content-center">
+    <div class="container fixed-container d-flex justify-content-center">
         <div class="row mt-4 mb-4">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 d-flex align-items-stretch" th:each="book : ${bookList}">
-                <figure class="card card-product-grid card-lg">
+            <!--            <div class="col col-md-6 col-lg-4 col-xl-3 d-flex align-items-stretch" th:each="book : ${bookList}">-->
+            <div class="col d-flex align-items-stretch" th:each="book : ${bookList}">
+                <figure class="card card-product-grid">
                     <a href="#" class="img-wrap" data-abc="true">
                         <img th:src="${book.getImageUrl()}"> </a>
                     <figcaption class="info-wrap">
                         <div class="row">
-                            <div class="col-md-9 col-xs-9">
+                            <div class="col-md-9">
                                 <a href="#" class="title" data-abc="true" th:text="${book.getBookName()}">name</a>
                                 <a th:href="@{'/books' + '?publisher=' + ${book.getPublisher().getId()}}" class="rated" th:text="${book.getPublisher().getName()}">name</a>
-<!--                                <div th:each="author : ${book.getAuthors()}">-->
-<!--                                    <span class="rated" th:text="${author}">author</span>-->
-<!--                                </div>-->
+                                <!--                                <div th:each="author : ${book.getAuthors()}">-->
+                                <!--                                    <span class="rated" th:text="${author}">author</span>-->
+                                <!--                                </div>-->
                             </div>
                             <div class="col-md-3 col-xs-3">
                                 <div class="rating text-right">
@@ -180,7 +187,8 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
-                                    <span class="rated">Rated 4.0/5</span> </div>
+                                    <span class="rated">Rated 4.0/5</span>
+                                </div>
                             </div>
                         </div>
                     </figcaption>
@@ -199,9 +207,9 @@
                     </div>
                     <div class="bottom-wrap">
                         <a href="#" class="btn btn-primary float-right" data-abc="true" th:disabled="${!book.getVisible()}">add to cart</a>
-<!--                        <div class="price-wrap">-->
-<!--                            <a href="#" class="btn btn-danger float-left" data-abc="true">add to my favourites</a>-->
-<!--                        </div>-->
+                        <!--                        <div class="price-wrap">-->
+                        <!--                            <a href="#" class="btn btn-danger float-left" data-abc="true">add to my favourites</a>-->
+                        <!--                        </div>-->
                     </div>
                 </figure>
             </div>
