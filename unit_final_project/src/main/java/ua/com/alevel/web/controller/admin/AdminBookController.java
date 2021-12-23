@@ -3,6 +3,7 @@ package ua.com.alevel.web.controller.admin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,12 +14,17 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import ua.com.alevel.facade.BookFacade;
 import ua.com.alevel.web.controller.AbstractController;
 import ua.com.alevel.web.dto.request.BookRequestDto;
 import ua.com.alevel.web.dto.response.BookResponseDto;
 import ua.com.alevel.web.dto.response.PageData;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+@Validated
 @Controller
 @RequestMapping("/admin/books")
 public class AdminBookController extends AbstractController {
@@ -70,15 +76,20 @@ public class AdminBookController extends AbstractController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable @Min(value = 1, message = "id can not be zero") Long id) {
         bookFacade.delete(id);
         return "redirect:/admin/books";
     }
 
     @GetMapping("/details/{id}")
-    public String details(@PathVariable Long id, Model model) {
-        BookResponseDto dto = bookFacade.findById(id);
-        model.addAttribute("book", dto);
-        return "pages/admin/book/book_details";
+    public String details(@PathVariable @NotBlank(message = "id can not be empty") String id, Model model) {
+        try {
+            Long bookId = Long.parseLong(id);
+            BookResponseDto dto = bookFacade.findById(bookId);
+            model.addAttribute("book", dto);
+            return "pages/admin/book/book_details";
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("incorrect value id");
+        }
     }
 }

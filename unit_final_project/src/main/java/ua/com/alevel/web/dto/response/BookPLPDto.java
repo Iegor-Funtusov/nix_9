@@ -5,6 +5,7 @@ import ua.com.alevel.persistence.entity.book.Book;
 import ua.com.alevel.persistence.entity.book.Genre;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -118,7 +119,15 @@ public class BookPLPDto {
         this.publisher = publisher;
     }
 
-    private record Publisher(Long id, String name) {
+    private static final class Publisher {
+
+        private final Long id;
+        private final String name;
+
+        private Publisher(Long id, String name) {
+            this.id = id;
+            this.name = name;
+        }
 
         public Long getId() {
             return id;
@@ -127,5 +136,35 @@ public class BookPLPDto {
         public String getName() {
             return name;
         }
+
+        public Long id() {
+            return id;
+        }
+
+        public String name() {
+            return name;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) return true;
+            if (obj == null || obj.getClass() != this.getClass()) return false;
+            var that = (Publisher) obj;
+            return Objects.equals(this.id, that.id) &&
+                    Objects.equals(this.name, that.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(id, name);
+        }
+
+        @Override
+        public String toString() {
+            return "Publisher[" +
+                    "id=" + id + ", " +
+                    "name=" + name + ']';
+        }
+
     }
 }

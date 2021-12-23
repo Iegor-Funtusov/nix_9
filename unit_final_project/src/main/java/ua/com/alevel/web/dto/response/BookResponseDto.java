@@ -1,8 +1,14 @@
 package ua.com.alevel.web.dto.response;
 
+import org.apache.commons.collections4.CollectionUtils;
+import ua.com.alevel.persistence.entity.author.Author;
 import ua.com.alevel.persistence.entity.book.Book;
+import ua.com.alevel.persistence.entity.book.Genre;
+import ua.com.alevel.persistence.entity.publisher.Publisher;
 
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Set;
 
 public class BookResponseDto extends ResponseDto {
 
@@ -13,6 +19,9 @@ public class BookResponseDto extends ResponseDto {
     private String description;
     private BigDecimal price;
     private Integer quantity;
+    private Set<Author> authors = Collections.emptySet();
+    private Set<Genre> genres = Collections.emptySet();
+    private Publisher publisher;
 
     public BookResponseDto() { }
 
@@ -28,6 +37,15 @@ public class BookResponseDto extends ResponseDto {
         this.description = book.getDescription();
         this.price = book.getPrice();
         this.quantity = book.getQuantity();
+        if (book.getPublisher() != null) {
+            this.publisher = book.getPublisher();
+        }
+        if (CollectionUtils.isNotEmpty(book.getAuthors())) {
+            this.authors = book.getAuthors();
+        }
+        if (CollectionUtils.isNotEmpty(book.getGenres())) {
+            this.genres = book.getGenres();
+        }
     }
 
     public String getBookName() {
@@ -84,5 +102,29 @@ public class BookResponseDto extends ResponseDto {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 }
