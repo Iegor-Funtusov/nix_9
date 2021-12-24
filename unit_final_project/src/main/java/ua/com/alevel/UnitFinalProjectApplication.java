@@ -6,11 +6,11 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import ua.com.alevel.persistence.entity.user.Admin;
+import ua.com.alevel.persistence.entity.user.Personal;
 import ua.com.alevel.persistence.repository.user.AdminRepository;
+import ua.com.alevel.persistence.repository.user.PersonalRepository;
 
 //@EnableAspectJAutoProxy
 @SpringBootApplication(exclude = {
@@ -21,10 +21,12 @@ public class UnitFinalProjectApplication {
 
     private final BCryptPasswordEncoder encoder;
     private final AdminRepository adminRepository;
+    private final PersonalRepository personalRepository;
 
-    public UnitFinalProjectApplication(BCryptPasswordEncoder encoder, AdminRepository adminRepository) {
+    public UnitFinalProjectApplication(BCryptPasswordEncoder encoder, AdminRepository adminRepository, PersonalRepository personalRepository) {
         this.encoder = encoder;
         this.adminRepository = adminRepository;
+        this.personalRepository = personalRepository;
     }
 
     public static void main(String[] args) {
@@ -33,6 +35,11 @@ public class UnitFinalProjectApplication {
 
     @EventListener(ApplicationReadyEvent.class)
     public void listen() {
+
+//        Personal personal = new Personal();
+//        personal.setEmail("personal@mail.com");
+//        personal.setPassword(encoder.encode("rootroot"));
+//        personalRepository.save(personal);
 //        Admin admin = new Admin();
 //        admin.setEmail("admin@mail.com");
 //        admin.setPassword(encoder.encode("rootroot"));

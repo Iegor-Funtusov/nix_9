@@ -3,6 +3,7 @@ package ua.com.alevel.exception;
 //import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,6 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+//    @ExceptionHandler(EntityExistException.class)
+//    public ResponseEntity error(EntityExistException e) {
+//        return ResponseEntity.status(409).body("");
+//    }
 
     @ExceptionHandler(value = {EntityNotFoundException.class})
     public ModelAndView entityNotFoundErrorHandler(EntityNotFoundException exception) {
@@ -63,6 +69,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String notFound(final Exception throwable, final Model model) {
+        System.out.println("GlobalExceptionHandler.notFound");
         String errorMessage = (throwable != null ? throwable.getMessage() : "Unknown error");
         model.addAttribute("errorMessage", errorMessage);
         model.addAttribute("showMessage", true);
