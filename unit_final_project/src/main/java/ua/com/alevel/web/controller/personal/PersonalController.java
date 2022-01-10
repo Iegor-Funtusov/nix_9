@@ -22,7 +22,6 @@ public class PersonalController {
 
     @GetMapping("/{id}")
     public String dashboard(@PathVariable @ValidId(message = "id must be more than zero") Long id) {
-        System.out.println("id = " + id);
         return "pages/personal/dashboard";
     }
 }

@@ -7,6 +7,7 @@ public class ValidIdConstraintValidator implements ConstraintValidator<ValidId, 
 
     @Override
     public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
+        System.out.println("ValidIdConstraintValidator.isValid");
         try {
             long id = Long.parseLong(String.valueOf(o));
             return id > 0;
