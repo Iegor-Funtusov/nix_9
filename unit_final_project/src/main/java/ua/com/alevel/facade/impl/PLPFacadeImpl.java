@@ -37,6 +37,12 @@ public class PLPFacadeImpl implements PLPFacade {
             queryMap.put(WebUtil.PUBLISHER_PARAM, publisherId);
             loggerService.commit(LoggerLevel.INFO, "add " + WebUtil.PUBLISHER_PARAM + ": " + publisherId);
         }
+        if (webRequest.getParameterMap().get(WebUtil.BOOK_SEARCH_PARAM) != null) {
+            String[] params = webRequest.getParameterMap().get(WebUtil.BOOK_SEARCH_PARAM);
+            String bookName = params[0];
+            queryMap.put(WebUtil.BOOK_SEARCH_PARAM, bookName);
+            loggerService.commit(LoggerLevel.INFO, "add " + WebUtil.BOOK_SEARCH_PARAM + ": " + bookName);
+        }
         List<Book> books = plpService.search(queryMap);
         List<BookPLPDto> bookPLPDtos = books.stream().map(BookPLPDto::new).toList();
         return bookPLPDtos;

@@ -34,8 +34,6 @@ public class AspectExecutorStrategyImpl implements AspectExecutorStrategy {
                 }
             }
         }
-        Object res = pjp.proceed();
-        System.out.println("res = " + res.getClass().getName());
         return pjp.proceed();
     }
 }

@@ -19,6 +19,7 @@ public final class WebUtil {
     public static final int DEFAULT_PAGE_PARAM_VALUE = 1;
     public static final int DEFAULT_SIZE_PARAM_VALUE = 10;
     public static final String PUBLISHER_PARAM = "publisher";
+    public static final String BOOK_SEARCH_PARAM = "bookSearch";
 
     private WebUtil() { }
 

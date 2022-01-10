@@ -11,4 +11,5 @@ import java.util.List;
 public interface BookRepository extends BaseRepository<Book> {
 
     List<Book> findByPublisher(Publisher publisher);
+    List<Book> findByBookNameContaining(String bookName);
 }

@@ -36,6 +36,10 @@ public class PLPServiceImpl implements PLPService {
             }
             return bookRepository.findByPublisher(publisher.get());
         }
+        if (queryMap.get(WebUtil.BOOK_SEARCH_PARAM) != null) {
+            String bookName = (String) queryMap.get(WebUtil.BOOK_SEARCH_PARAM);
+            return bookRepository.findByBookNameContaining(bookName);
+        }
         return bookRepository.findAll();
     }
 }

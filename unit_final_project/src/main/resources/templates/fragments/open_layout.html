@@ -13,14 +13,19 @@
     <div layout:fragment="content">
         <nav class="navbar navbar-dark bg-dark fixed-top">
             <a class="nav-item nav-link" th:href="@{/books}">Books</a>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+            <form class="d-flex" method="POST" th:action="@{/books/search}" id="bookSearch">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="bookNamed">
+                <button class="btn btn-outline-success" type="submit" id="btnBookSearch">Search</button>
             </form>
             <a class="nav-item nav-link" th:href="@{/login}" style="cursor: pointer !important;">Login</a>
         </nav>
         <section layout:fragment="open_content"></section>
     </div>
 </div>
+
+<th:block layout:fragment="scripts">
+    <script type="text/javascript" th:src="@{/js/search.js}"></script>
+</th:block>
+
 </body>
 </html>
