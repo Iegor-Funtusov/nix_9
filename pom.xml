@@ -26,6 +26,7 @@
         <module>dinix_orm</module>
         <module>unit_18_start_web</module>
         <module>unit_19_clean_spring</module>
+        <module>unit_20_thread</module>
     </modules>
 
     <properties>
