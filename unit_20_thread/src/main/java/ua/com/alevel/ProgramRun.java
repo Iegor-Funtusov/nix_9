@@ -4,6 +4,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static java.lang.Thread.sleep;
 
@@ -26,6 +31,7 @@ public class ProgramRun {
             case "1" -> correctlyStop();
             case "2" -> incorrectlyStop();
             case "3" -> threadSum();
+            case "4" -> increment();
             case "0" -> System.exit(0);
         }
         navigation();
@@ -36,6 +42,7 @@ public class ProgramRun {
         System.out.println("if you want run correctly stop thread, please enter 1");
         System.out.println("if you want run incorrectly stop thread, please enter 2");
         System.out.println("if you want run thread sum thread, please enter 3");
+        System.out.println("if you want run thread count increment, please enter 4");
         System.out.println();
     }
 
@@ -70,61 +77,138 @@ public class ProgramRun {
     private static void threadSum() {
         String threadName = Thread.currentThread().getName();
         System.out.println(threadName + ": ProgramRun.threadSum");
-        int[] arr = MathUtil.randomArrays(1000, 1, 1_000_000);
+        Integer[] arr = MathUtil.randomArrays(1_000_000, 1, 1_000_000);
         runSimpleSum(arr);
         runThreadSum(arr);
+        try {
+            callable(arr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        future(arr);
     }
 
-    private static void runSimpleSum(int[] arr) {
+    private static void runSimpleSum(Integer[] arr) {
         System.out.println("ProgramRun.runSimpleSum start");
         long start = System.currentTimeMillis();
-        int sum = MathUtil.sum(arr);
+        long sum = MathUtil.sum(arr);
         long end = System.currentTimeMillis() - start;
         System.out.println("end = " + end);
         System.out.println("ProgramRun.runSimpleSum finish, sum: " + sum);
     }
 
-    private static void runThreadSum(int[] arr) {
+    private static void runThreadSum(Integer[] arr) {
         System.out.println("ProgramRun.runThreadSum start");
-        long start = System.currentTimeMillis();
-        int sum = 0;
 
-        int threadCount = 2;
-        int av = arr.length / 2;
+        long sum = 0;
 
-        int[] left = new int[av];
-        int[] right = new int[arr.length - av];
+        Integer[][] ints = MathUtil.divideArr(arr);
+        List<Integer[]> list = new ArrayList<>();
 
-        for (int i = 0, j = 0; i < arr.length; i++) {
-            if (i < av) {
-                left[i] = arr[i];
-            } else {
-                right[j++] = arr[i];
-            }
+        List<ThreadSum> threadSums = new ArrayList<>();
+        for (Integer[] anInt : ints) {
+            Integer[][] ints1 = MathUtil.divideArr(anInt);
+            list.add(ints1[0]);
+            list.add(ints1[1]);
         }
 
-        int[][] ints = new int[][]{ left, right };
+        long start = System.currentTimeMillis();
 
-        List<Integer> integers = new ArrayList<>();
-
-        for (int i = 0; i < threadCount; i++) {
+        for (Integer[] integers : list) {
             ThreadSum thread = new ThreadSum();
-            thread.setInts(ints[i]);
+            thread.setInts(integers);
             thread.start();
             try {
                 thread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            integers.add(thread.getSum());
+            sum += thread.getSum();
+//            threadSums.add(thread);
         }
 
-        for (Integer integer : integers) {
-            sum += integer;
-        }
+//        int count = 0;
+//        boolean breakWhile = true;
+//        while (breakWhile) {
+//            count = 0;
+//            for (ThreadSum threadSum : threadSums) {
+//                if (threadSum.isInterrupted()) {
+//                    count += 1;
+//                }
+//            }
+//            if (count == threadSums.size()) {
+//                breakWhile = false;
+//            }
+//        }
+//
+//        for (ThreadSum threadSum : threadSums) {
+//            sum += threadSum.getSum();
+//        }
 
         long end = System.currentTimeMillis() - start;
         System.out.println("end = " + end);
         System.out.println("ProgramRun.runThreadSum finish, sum: " + sum);
+    }
+
+    private static void increment() {
+        new CustomExecutorService().test();
+    }
+
+    private static void callable(Integer[] arr) throws Exception {
+        System.out.println("ProgramRun.callable");
+        long sum = 0;
+
+        List<Integer[]> list = new ArrayList<>();
+
+        Integer[][] ints = MathUtil.divideArr(arr);
+
+        for (Integer[] anInt : ints) {
+            Integer[][] ints1 = MathUtil.divideArr(anInt);
+            list.add(ints1[0]);
+            list.add(ints1[1]);
+        }
+
+        long start = System.currentTimeMillis();
+
+        for (Integer[] integers : list) {
+//            CallableSum callableSum = new CallableSum();
+//            callableSum.setInts(integers);
+//            callableSum.run();
+
+            Callable<Long> callable = () -> MathUtil.sum(integers);
+
+            sum += callable.call();
+
+        }
+
+        long end = System.currentTimeMillis() - start;
+        System.out.println("end = " + end);
+        System.out.println("ProgramRun.callable finish, sum: " + sum);
+    }
+
+    private static void future(Integer[] arr) {
+        long sum = 0;
+        List<Integer[]> list = new ArrayList<>();
+        Integer[][] ints = MathUtil.divideArr(arr);
+        for (Integer[] anInt : ints) {
+            Integer[][] ints1 = MathUtil.divideArr(anInt);
+            list.add(ints1[0]);
+            list.add(ints1[1]);
+        }
+        long start = System.currentTimeMillis();
+
+        ExecutorService executor = Executors.newFixedThreadPool(list.size());
+        for (Integer[] integers : list) {
+            Future<Long> future = executor.submit(() -> MathUtil.sum(integers));
+            try {
+                sum += future.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        long end = System.currentTimeMillis() - start;
+        System.out.println("end = " + end);
+        System.out.println("ProgramRun.future finish, sum: " + sum);
     }
 }

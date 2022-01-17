@@ -2,8 +2,8 @@ package ua.com.alevel;
 
 public class ThreadSum extends Thread {
 
-    private int[] ints;
-    private int sum = 0;
+    private Integer[] ints;
+    private long sum = 0;
 
     @Override
     public void run() {
@@ -14,11 +14,11 @@ public class ThreadSum extends Thread {
         this.interrupt();
     }
 
-    public void setInts(int[] ints) {
+    public void setInts(Integer[] ints) {
         this.ints = ints;
     }
 
-    public int getSum() {
+    public long getSum() {
         return sum;
     }
 }
