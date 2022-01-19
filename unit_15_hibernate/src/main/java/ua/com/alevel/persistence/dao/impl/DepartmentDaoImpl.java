@@ -3,6 +3,7 @@ package ua.com.alevel.persistence.dao.impl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-@Transactional
+//@Transactional
 public class DepartmentDaoImpl implements DepartmentDao {
 
     private final SessionFactory sessionFactory;
@@ -29,7 +30,23 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
     @Override
     public void create(Department entity) {
-        sessionFactory.getCurrentSession().persist(entity);
+        Session session;
+        try {
+            session = sessionFactory.getCurrentSession();
+        } catch (Exception e) {
+            session = sessionFactory.openSession();
+        }
+
+        Transaction transaction = session.getTransaction();
+        try {
+            transaction.begin();
+            session.save(entity);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+
+//        sessionFactory.getCurrentSession().persist(entity);
     }
 
     @Override
